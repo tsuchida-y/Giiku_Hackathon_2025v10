@@ -30,8 +30,24 @@ public class PostDetailLoader : MonoBehaviour
         Debug.Log("delete");
     }
 
-    public void OnBackButtonClick()
+    public void OnHomeButtonClick()
     {
-        Debug.Log("Back");
+        Debug.Log("Home");
     }
+
+    public void OnPostListButtonClick()
+    {
+        Debug.Log("PostList");
+    }
+
+    public void OnNewPostButtonClick()
+    {
+        // 遷移先に値を渡す（後述の方法を使う）
+        PostEditData.TempPostText = "";
+        PostEditData.TempPostOwner = "";
+
+        // 新規投稿画面へ遷移
+        UnityEngine.SceneManagement.SceneManager.LoadScene("newpostScene");
+    }
+
 }
