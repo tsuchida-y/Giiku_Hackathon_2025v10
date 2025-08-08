@@ -2,32 +2,32 @@ using UnityEngine;
 
 public class FireworkSpawner : MonoBehaviour
 {
-    public GameObject fireworkPrefab;   // 生成する花火のプレハブ
-    public float spawnRadius = 30f;     // ★カメラからの距離（半径）
-    public float spawnInterval = 1.0f;    // 花火が生成される間隔（秒）
+    public GameObject[] fireworkPrefabs;
+    public float spawnRadius = 50f;
 
-    void Start()
+    // ★★★ これがSNS担当者が呼び出すための「窓口」となる関数 ★★★
+    public void LaunchFireworkWithLikes(int likeCount)
     {
-        StartCoroutine(SpawnFireworks());
-    }
+        // 打ち上げ位置を計算
+        float angle = Random.Range(0, 360f);
+        Vector3 spawnPosition = new Vector3(
+            Mathf.Cos(angle * Mathf.Deg2Rad) * spawnRadius,
+            0,
+            Mathf.Sin(angle * Mathf.Deg2Rad) * spawnRadius
+        );
 
-    System.Collections.IEnumerator SpawnFireworks()
-    {
-        while (true)
+        // 打ち上げる花火をランダムに選ぶ
+        int randomIndex = Random.Range(0, fireworkPrefabs.Length);
+        GameObject chosenPrefab = fireworkPrefabs[randomIndex];
+
+        // 選んだ花火を生成
+        GameObject fireworkInstance = Instantiate(chosenPrefab, spawnPosition, Quaternion.identity);
+
+        // ★★★ 生成した花火に「いいね数」を伝えて初期設定させる ★★★
+        FireworkController controller = fireworkInstance.GetComponent<FireworkController>();
+        if (controller != null)
         {
-            // カメラ(0,0,0)を中心とした、半径spawnRadiusの円周上のランダムな点を計算
-            float angle = Random.Range(0, 360f);
-            Vector3 spawnPosition = new Vector3(
-                Mathf.Cos(angle * Mathf.Deg2Rad) * spawnRadius,
-                0, // 打ち上げ開始高さ
-                Mathf.Sin(angle * Mathf.Deg2Rad) * spawnRadius
-            );
-
-            // 花火を生成
-            Instantiate(fireworkPrefab, spawnPosition, Quaternion.identity);
-
-            // 指定した秒数だけ待つ
-            yield return new WaitForSeconds(spawnInterval);
+            controller.Initialize(likeCount);
         }
     }
 }
