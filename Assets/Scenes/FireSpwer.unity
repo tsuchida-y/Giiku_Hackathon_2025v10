@@ -270,7 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa2f1264f3e6334b8bbadb2fbcea75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 2
+  sensitivity: 1
+  touchSensitivity: 5
 --- !u!114 &587311194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireworkMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &669535279
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1510843609}
   - component: {fileID: 1510843608}
+  - component: {fileID: 1510843610}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -436,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0af3674a333cde4dac2d921f2090e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkPrefabs: []
+  fireworkPrefab: {fileID: 0}
   spawnRadius: 50
 --- !u!4 &1510843609
 Transform:
@@ -448,6 +450,66 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.919556, y: 4.375135, z: -0.596451}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1510843610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510843607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7559cdde1a1a1164ba74741c20ec953b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawner: {fileID: 2124369316}
+--- !u!1 &1746719310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1746719312}
+  - component: {fileID: 1746719311}
+  m_Layer: 0
+  m_Name: TapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1746719311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746719310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585d9c2269021604f88b961d528d293f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireworkMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!4 &1746719312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746719310}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -482,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0af3674a333cde4dac2d921f2090e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireworkPrefabs: []
+  fireworkPrefab: {fileID: 6689605342121874283, guid: e4213e74739c5cf4eb85aac0a900c3e7, type: 3}
   spawnRadius: 50
 --- !u!4 &2124369317
 Transform:
@@ -507,3 +569,4 @@ SceneRoots:
   - {fileID: 1510843609}
   - {fileID: 2124369317}
   - {fileID: 587311192}
+  - {fileID: 1746719312}

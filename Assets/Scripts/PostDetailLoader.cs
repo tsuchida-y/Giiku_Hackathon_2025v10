@@ -44,6 +44,7 @@ public class PostDetailLoader : MonoBehaviour
     public void OnHomeButtonClick()
     {
         Debug.Log("Home");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("FireSpwer");
     }
 
     public void OnPostListButtonClick()

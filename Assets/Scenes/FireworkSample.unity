@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 69591096}
   - component: {fileID: 69591095}
   - component: {fileID: 69591098}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5037,7 +5037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93edaf5795f4b2a479834967f931223f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  postId: 0
 --- !u!1 &154220969
 GameObject:
   m_ObjectHideFlags: 0
@@ -5590,7 +5589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93edaf5795f4b2a479834967f931223f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  postId: 0
 --- !u!1 &1412121023
 GameObject:
   m_ObjectHideFlags: 0
@@ -5860,7 +5858,7 @@ GameObject:
   - component: {fileID: 1967736322}
   - component: {fileID: 1967736324}
   - component: {fileID: 1967736323}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5976,7 +5974,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
