@@ -4,22 +4,6 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-<<<<<<< HEAD
-  - enabled: 1
-    path: Assets/Scenes/detailpostScene.unity
-    guid: 866f824299b568e44814e1a3c33765fe
-  - enabled: 1
-    path: Assets/Scenes/newpostScene.unity
-    guid: d26bf9b9f4e041949b769e0602f551e5
-  m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-=======
-  m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: d09529ef618564c0a9bd973ce26d1701, type: 2}
->>>>>>> 2a07fb2 (Initial commit with Git LFS)
+  m_Scenes: []
+  m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
