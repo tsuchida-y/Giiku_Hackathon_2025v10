@@ -42,6 +42,16 @@ public class FireworkController : MonoBehaviour
     {
         this.currentPostData = data;
         this.festivalManager = manager;
+        float totalVotes = data.RedVotes + data.GreenVotes + data.BlueVotes;
+        if (totalVotes == 0) { totalVotes = 1; }
+
+        float r = data.RedVotes / totalVotes;
+        float g = data.GreenVotes / totalVotes;
+        float b = data.BlueVotes / totalVotes;
+
+        Color fireworkColor = new Color(r, g, b);
+        var explosionMain = explosionBurst.main;
+        explosionMain.startColor = fireworkColor;
         StartCoroutine(LifecycleCoroutine());
     }
     /// <summary>

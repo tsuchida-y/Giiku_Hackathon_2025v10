@@ -21,50 +21,49 @@ public class FestivalManager : MonoBehaviour
 
     void Update()
     {
-        // 「1」キーで、いいね数 0 の「Small」花火をテスト
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+    // Press 'R' for a Red firework
+    if (Input.GetKeyDown(KeyCode.R))
+    {
+        PostData testPost = new PostData
         {
-            Debug.Log("テスト：Smallの花火（いいね 0）を打ち上げます！");
-            PostData testPost = new PostData
-            {
-                PostID = "testPost_Small_" + Random.Range(0, 10000),
-                Message = "Smallのテスト投稿です",
-                UserName = "TestUser",
-                LikeCount = 0, // いいね数 0
-                Timestamp = System.DateTime.UtcNow
-            };
-            OnNewPostReceived(testPost);
-        }
+            PostID = "testPost_Red_" + Random.Range(0, 10000),
+            Timestamp = System.DateTime.UtcNow,
+            LikeCount = 10,
+            RedVotes = 10,
+            GreenVotes = 1,
+            BlueVotes = 1
+        };
+        OnNewPostReceived(testPost);
+    }
 
-        // 「2」キーで、いいね数 5 の「Medium」花火をテスト
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+    // Press 'G' for a Green firework
+    if (Input.GetKeyDown(KeyCode.G))
+    {
+        PostData testPost = new PostData
         {
-            Debug.Log("テスト：Mediumの花火（いいね 5）を打ち上げます！");
-            PostData testPost = new PostData
-            {
-                PostID = "testPost_Medium_" + Random.Range(0, 10000),
-                Message = "Mediumのテスト投稿です",
-                UserName = "TestUser",
-                LikeCount = 5, // いいね数 5
-                Timestamp = System.DateTime.UtcNow
-            };
-            OnNewPostReceived(testPost);
-        }
+            PostID = "testPost_Green_" + Random.Range(0, 10000),
+            Timestamp = System.DateTime.UtcNow,
+            LikeCount = 0,
+            RedVotes = 1,
+            GreenVotes = 10,
+            BlueVotes = 1
+        };
+        OnNewPostReceived(testPost);
+    }
 
-        // 「3」キーで、いいね数 10 の「Large」花火をテスト
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+    if (Input.GetKeyDown(KeyCode.B))
+    {
+        PostData testPost = new PostData
         {
-            Debug.Log("テスト：Largeの花火（いいね 10）を打ち上げます！");
-            PostData testPost = new PostData
-            {
-                PostID = "testPost_Large_" + Random.Range(0, 10000),
-                Message = "Largeのテスト投稿です",
-                UserName = "TestUser",
-                LikeCount = 10, // いいね数 10
-                Timestamp = System.DateTime.UtcNow
-            };
-            OnNewPostReceived(testPost);
-        }
+            PostID = "testPost_Blue_" + Random.Range(0, 10000),
+            Timestamp = System.DateTime.UtcNow,
+            LikeCount = 5,
+            RedVotes = 1,
+            GreenVotes = 1,
+            BlueVotes = 10
+        };
+        OnNewPostReceived(testPost);
+    }
     }
     // 新しい投稿があった時に呼び出される
     public void OnNewPostReceived(PostData newPost)

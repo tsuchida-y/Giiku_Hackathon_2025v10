@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 587311190}
   - component: {fileID: 587311189}
   - component: {fileID: 587311193}
-  - component: {fileID: 587311194}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -468,6 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 2124369316}
+<<<<<<< HEAD:Assets/Scenes/FireSpwer.unity
 --- !u!1 &1746719310
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +515,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> ueno:Assets/FireSpwer.unity
 --- !u!1 &2124369315
 GameObject:
   m_ObjectHideFlags: 0
