@@ -5,7 +5,7 @@ using TMPro;
 using System;
 using Firebase.Firestore;
 using Firebase.Extensions; // Firebaseの非同期処理をメインスレッドで実行するために必要
-using System.Linq;
+using System.Linq; 
 
 public class DataDisplayListController : MonoBehaviour
 {
@@ -24,6 +24,9 @@ public class DataDisplayListController : MonoBehaviour
         public string text;
         public long createdAtUnix;
         public int likes;
+        public int redVotes;   // Happy（赤）のいいね数
+        public int greenVotes; // Glad（緑）のいいね数
+        public int blueVotes;  // Sad（青）のいいね数
     }
 
     // JsonUtility用のラッパークラス（JSONデータから直接読み込む場合のみ使用）
@@ -108,7 +111,10 @@ public class DataDisplayListController : MonoBehaviour
                             createdAtUnix = postData.ContainsKey("timestamp")
                                 ? GetUnixTimestamp((Timestamp)postData["timestamp"])
                                 : GetCurrentUnixTimestamp(),
-                            likes = postData.ContainsKey("likes") ? Convert.ToInt32(postData["likes"]) : 0
+                            likes = postData.ContainsKey("likes") ? Convert.ToInt32(postData["likes"]) : 0,
+                            redVotes = postData.ContainsKey("redVotes") ? Convert.ToInt32(postData["redVotes"]) : 0,
+                            greenVotes = postData.ContainsKey("greenVotes") ? Convert.ToInt32(postData["greenVotes"]) : 0,
+                            blueVotes = postData.ContainsKey("blueVotes") ? Convert.ToInt32(postData["blueVotes"]) : 0
                         };
 
                         _posts.Add(post);
@@ -202,23 +208,59 @@ public class DataDisplayListController : MonoBehaviour
         }
         // いいねボタンは今のままでOK（子に別ボタンがある場合、最前面の子ボタンが優先処理されます）
         // いいねボタン、テキストの設定（両方ともReactionPanelの子オブジェクト）
-        var likeButton = go.transform.Find("ReactionPanel/LikeButton")?.GetComponent<Button>();
-        var likeText = go.transform.Find("ReactionPanel/LikeText")?.GetComponent<TMP_Text>();
+        // 3種類のボタンとテキストの設定
+        var happyButton = go.transform.Find("ReactionPanel/HappyButton")?.GetComponent<Button>();
+        var gladButton = go.transform.Find("ReactionPanel/GladButton")?.GetComponent<Button>();
+        var sadButton = go.transform.Find("ReactionPanel/SadButton")?.GetComponent<Button>();
 
+        var happyText = go.transform.Find("ReactionPanel/HappyText")?.GetComponent<TMP_Text>();
+        var gladText = go.transform.Find("ReactionPanel/GladText")?.GetComponent<TMP_Text>();
+        var sadText = go.transform.Find("ReactionPanel/SadText")?.GetComponent<TMP_Text>();
 
         // UIコンポーネントが見つからない場合のデバッグログ
-        if (likeButton == null) Debug.LogError("ReactionPanel/LikeButtonが見つかりません");
-        if (likeText == null) Debug.LogError("LikeTextが見つかりません");
+        if (happyButton == null) Debug.LogError("ReactionPanel/HappyButtonが見つかりません");
+        if (gladButton == null) Debug.LogError("ReactionPanel/GladButtonが見つかりません");
+        if (sadButton == null) Debug.LogError("ReactionPanel/SadButtonが見つかりません");
 
-        if (likeButton && likeText)
+        // 各ボタンのいいね数を設定
+        Dictionary<string, int> votes = new Dictionary<string, int>
         {
-            Debug.Log($"いいね数を設定します: {p.likes} いいね");
-            likeText.text = p.likes.ToString() + " いいね";
+            { "redVotes", p.redVotes },
+            { "greenVotes", p.greenVotes },
+            { "blueVotes", p.blueVotes }
+        };
 
-            likeButton.onClick.RemoveAllListeners();
-            likeButton.onClick.AddListener(() =>
+        if (happyText) happyText.text = votes["redVotes"].ToString();
+        if (gladText) gladText.text = votes["greenVotes"].ToString();
+        if (sadText) sadText.text = votes["blueVotes"].ToString();
+
+        // HappyButton（赤）のクリックイベント
+        if (happyButton)
+        {
+            happyButton.onClick.RemoveAllListeners();
+            happyButton.onClick.AddListener(() =>
             {
-                LikePost(p.id);
+                UpdateVoteCount(p.id, "redVotes");
+            });
+        }
+
+        // GladButton（緑）のクリックイベント
+        if (gladButton)
+        {
+            gladButton.onClick.RemoveAllListeners();
+            gladButton.onClick.AddListener(() =>
+            {
+                UpdateVoteCount(p.id, "greenVotes");
+            });
+        }
+
+        // SadButton（青）のクリックイベント
+        if (sadButton)
+        {
+            sadButton.onClick.RemoveAllListeners();
+            sadButton.onClick.AddListener(() =>
+            {
+                UpdateVoteCount(p.id, "blueVotes");
             });
         }
     }
@@ -237,13 +279,13 @@ private PostData ToPostData(Post p)
 }
 
 
-    // いいね機能の実装
-    void LikePost(string postId)
+    // 新しい投票処理の実装
+    void UpdateVoteCount(string postId, string voteType)
     {
         // ドキュメントの参照を取得
         DocumentReference docRef = db.Collection("messages").Document(postId);
 
-        // トランザクションを使用していいね数を更新
+        // トランザクションを使用して投票数を更新
         db.RunTransactionAsync(transaction =>
         {
             return transaction.GetSnapshotAsync(docRef)
@@ -252,17 +294,17 @@ private PostData ToPostData(Post p)
                     DocumentSnapshot snapshot = task.Result;
                     Dictionary<string, object> data = snapshot.ToDictionary();
 
-                    // 現在のいいね数を取得して+1する
-                    long currentLikes = 0;
-                    if (data.ContainsKey("likes"))
+                    // 現在の投票数を取得して+1する
+                    long currentVotes = 0;
+                    if (data.ContainsKey(voteType))
                     {
-                        currentLikes = Convert.ToInt64(data["likes"]);
+                        currentVotes = Convert.ToInt64(data[voteType]);
                     }
 
-                    // いいね数を更新
+                    // 投票数を更新
                     Dictionary<string, object> updates = new Dictionary<string, object>
                     {
-                        { "likes", currentLikes + 1 }
+                        { voteType, currentVotes + 1 }
                     };
 
                     // ドキュメントを更新
@@ -274,13 +316,13 @@ private PostData ToPostData(Post p)
         {
             if (task.IsCompleted && !task.IsFaulted)
             {
-                Debug.Log("いいねを追加しました！");
+                Debug.Log($"{voteType}の投票を追加しました！");
                 // 投稿リストを更新
                 LoadFromFirestore();
             }
             else
             {
-                Debug.LogError("いいねの追加に失敗しました: " + task.Exception);
+                Debug.LogError($"{voteType}の投票の追加に失敗しました: " + task.Exception);
             }
         });
     }
