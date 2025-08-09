@@ -2,32 +2,30 @@ using UnityEngine;
 
 public class FireworkSpawner : MonoBehaviour
 {
-    public GameObject[] fireworkPrefabs;
+    public GameObject fireworkPrefab;
     public float spawnRadius = 50f;
 
-    // ★★★ これがSNS担当者が呼び出すための「窓口」となる関数 ★★★
-    public void LaunchFireworkWithLikes(int likeCount)
+    // FestivalManagerから呼び出される関数
+    public FireworkController SpawnFirework(PostData data, FestivalManager manager)
     {
-        // 打ち上げ位置を計算
+        // ランダムな打ち上げ位置を計算
         float angle = Random.Range(0, 360f);
         Vector3 spawnPosition = new Vector3(
-            Mathf.Cos(angle * Mathf.Deg2Rad) * spawnRadius,
+            Mathf.Cos(angle * Mathf.Deg2Rad) * spawnRadius, // spawnRadiusは半径
             0,
             Mathf.Sin(angle * Mathf.Deg2Rad) * spawnRadius
         );
 
-        // 打ち上げる花火をランダムに選ぶ
-        int randomIndex = Random.Range(0, fireworkPrefabs.Length);
-        GameObject chosenPrefab = fireworkPrefabs[randomIndex];
-
-        // 選んだ花火を生成
-        GameObject fireworkInstance = Instantiate(chosenPrefab, spawnPosition, Quaternion.identity);
-
-        // ★★★ 生成した花火に「いいね数」を伝えて初期設定させる ★★★
-        FireworkController controller = fireworkInstance.GetComponent<FireworkController>();
-        if (controller != null)
+        // 花火を生成
+        GameObject instance = Instantiate(fireworkPrefab, spawnPosition, Quaternion.identity);
+        FireworkController controller = instance.GetComponent<FireworkController>();
+        
+        // 生成した花火の初期設定を行う
+        if(controller != null)
         {
-            controller.Initialize(likeCount);
+            // ★エラー修正点：引数にmanagerを追加
+            controller.Initialize(data, manager);
         }
+        return controller;
     }
 }

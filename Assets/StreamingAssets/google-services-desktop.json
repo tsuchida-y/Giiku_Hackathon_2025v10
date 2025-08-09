@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "191957506136",
+    "project_id": "giiku-hackathon-2025v10",
+    "storage_bucket": "giiku-hackathon-2025v10.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191957506136:android:41f8060faef5fcd0bc522d",
+        "android_client_info": {
+          "package_name": "com.hackathon.v10"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz4UG9CXfS3Nkd2K0IrA-nX9Ao_05OLO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
