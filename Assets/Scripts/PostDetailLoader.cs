@@ -2,14 +2,25 @@ using UnityEngine;
 using TMPro;
 public class PostDetailLoader : MonoBehaviour
 {
-
     public TextMeshProUGUI PostText, PostOwner;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PostOwner.text = "ここに投稿主が入ります";
-        PostText.text = "ここに投稿内容が入ります";
+        var post = SelectedPost.Current;
+        if (post == null)
+        {
+            Debug.LogWarning("SelectedPost.Current is null. Back to list.");
+            // 直接シーンを開いた等のケース。保険で一覧へ戻す
+            UnityEngine.SceneManagement.SceneManager.LoadScene("postlistScene");
+            return;
+        }
+        if (!PostOwner || !PostText)
+        {
+            Debug.LogError("PostOwner / PostText が未割り当てです（Inspectorで割り当ててください）");
+            return;
+        }
+        PostOwner.text = post.UserName ?? "匿名";
+        PostText.text = post.Message ?? "";
     }
 
     public void OnEditButtonClick()
