@@ -64,7 +64,37 @@ public class FestivalManager : MonoBehaviour
                 Timestamp = System.DateTime.UtcNow
             };
             OnNewPostReceived(testPost);
-        }
+        }// In the Update() method of FestivalManager.cs
+
+    // Press 'R' for a Red firework
+    if (Input.GetKeyDown(KeyCode.R))
+    {
+        PostData testPost = new PostData
+        {
+            PostID = "testPost_Red_" + Random.Range(0, 10000),
+            Timestamp = System.DateTime.UtcNow,
+            LikeCount = 0,
+            RedVotes = 10,
+            GreenVotes = 1,
+            BlueVotes = 1
+        };
+        OnNewPostReceived(testPost);
+    }
+
+    // Press 'G' for a Green firework
+    if (Input.GetKeyDown(KeyCode.G))
+    {
+        PostData testPost = new PostData
+        {
+            PostID = "testPost_Green_" + Random.Range(0, 10000),
+            Timestamp = System.DateTime.UtcNow,
+            LikeCount = 0,
+            RedVotes = 1,
+            GreenVotes = 10,
+            BlueVotes = 1
+        };
+        OnNewPostReceived(testPost);
+    }
     }
     // 新しい投稿があった時に呼び出される
     public void OnNewPostReceived(PostData newPost)
