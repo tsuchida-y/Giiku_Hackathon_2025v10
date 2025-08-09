@@ -265,16 +265,23 @@ public class FestivalManager : MonoBehaviour
     }
 
     // 最新のいいね数を返す
-    public int GetLikesForPost(string postID)
+    // 修正後のコード
+public int GetLikesForPost(string postID)
+{
+    PostData post = allPosts.Find(p => p.PostID == postID);
+    if (post != null)
     {
-        PostData post = allPosts.Find(p => p.PostID == postID);
-        if (post != null)
-        {
-            post.LikeCount += Random.Range(0, 5);
-            return post.LikeCount;
-        }
-        return 0;
+        // ランダムにいずれかの投票を増やす
+        int randomVotes = Random.Range(0, 5);
+        int voteType = Random.Range(0, 3);
+        if (voteType == 0) { post.RedVotes += randomVotes; }
+        else if (voteType == 1) { post.GreenVotes += randomVotes; }
+        else { post.BlueVotes += randomVotes; }
+
+        return post.LikeCount; // LikeCountは自動的に更新される
     }
+    return 0;
+}
 
     // 定期的に古い投稿（花火）を削除するためのコルーチン
     private IEnumerator CleanupCoroutine()
