@@ -8,7 +8,8 @@ using Firebase.Extensions; // ← この行を追加
 public class DataManager : MonoBehaviour
 {
     // UnityエディタからInputFieldとButtonをここに設定します
-    public TMP_InputField inputField;
+    public TMP_InputField nameInputField;    // 名前入力用のInputField
+    public TMP_InputField messageInputField; // 投稿内容入力用のInputField
     public Button saveButton;
 
     private FirebaseFirestore db;
@@ -24,20 +25,22 @@ public class DataManager : MonoBehaviour
 
     public void SaveData()
     {
-        string inputText = inputField.text;
+        string nameText = nameInputField.text;
+        string messageText = messageInputField.text;
 
-        // テキストが空の場合は処理をしない
-        if (string.IsNullOrEmpty(inputText))
+        // 名前または投稿内容が空の場合は処理をしない
+        if (string.IsNullOrEmpty(nameText) || string.IsNullOrEmpty(messageText))
         {
-            Debug.LogWarning("入力が空です。");
+            Debug.LogWarning("名前または投稿内容が空です。");
             return;
         }
 
         // Firestoreに保存するデータを作成
-        //ここで入力されたテキストと現在のタイムスタンプを含むデータを作成
+        //ここで名前、投稿内容、現在のタイムスタンプを含むデータを作成
         Dictionary<string, object> data = new Dictionary<string, object>
         {
-            { "message", inputText },
+            { "name", nameText },
+            { "message", messageText },
             { "timestamp", Timestamp.GetCurrentTimestamp() }
         };
 
@@ -46,7 +49,9 @@ public class DataManager : MonoBehaviour
             if (task.IsCompleted && !task.IsFaulted)
             {
                 Debug.Log("データの保存に成功しました！");
-                inputField.text = ""; // 保存後に入力欄をクリア
+                // 保存後に入力欄をクリア
+                nameInputField.text = "";
+                messageInputField.text = ""; 
             }
             else
             {
