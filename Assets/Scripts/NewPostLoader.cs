@@ -20,6 +20,7 @@ public class NewPostLoader : MonoBehaviour
     public void OnPostButtonClick()
     {
         Debug.Log("New or Update post");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("postlistScene");
     }
 
     public void OnHomeButtonClick()
@@ -30,6 +31,7 @@ public class NewPostLoader : MonoBehaviour
     public void OnPostListButtonClick()
     {
         Debug.Log("PostList");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("postlistScene");
     }
 
     public void OnNewPostButtonClick()
