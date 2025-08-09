@@ -36,70 +36,23 @@ public class FireworkController : MonoBehaviour
     private PostData currentPostData;
     private FestivalManager festivalManager;
     private float currentHeight; // ← いまの打上げ高さを保存
-    private Color fireworkColor;
-
 
     // Spawnerから呼び出される、一生の始まりの合図
     public void Initialize(PostData data, FestivalManager manager)
     {
         this.currentPostData = data;
         this.festivalManager = manager;
-        
-        // 色が設定されていない場合は、デフォルトで計算
-        if (fireworkColor == Color.clear)
-        {
-            CalculateFireworkColor();
-        }
-        
+        float totalVotes = data.RedVotes + data.GreenVotes + data.BlueVotes;
+        if (totalVotes == 0) { totalVotes = 1; }
+
+        float r = data.RedVotes / totalVotes;
+        float g = data.GreenVotes / totalVotes;
+        float b = data.BlueVotes / totalVotes;
+
+        Color fireworkColor = new Color(r, g, b);
+        var explosionMain = explosionBurst.main;
+        explosionMain.startColor = fireworkColor;
         StartCoroutine(LifecycleCoroutine());
-    }
-    
-    // 花火の色を外部から設定するためのメソッド
-    public void SetFireworkColor(Color color)
-    {
-        this.fireworkColor = color;
-        
-        // パーティクルシステムの色を更新
-        if (explosionBurst != null)
-        {
-            var main = explosionBurst.main;
-            main.startColor = fireworkColor;
-        }
-        
-        if (launchTrail != null)
-        {
-            var main = launchTrail.main;
-            main.startColor = fireworkColor;
-        }
-    }
-    
-    // 投稿データのRGB値から花火の色を計算
-    private void CalculateFireworkColor()
-    {
-        if (currentPostData == null) return;
-        
-        float totalVotes = currentPostData.RedVotes + currentPostData.GreenVotes + currentPostData.BlueVotes;
-        if (totalVotes <= 0) totalVotes = 3; // デフォルト値として3を使用（各色1ずつ）
-        
-        float r = currentPostData.RedVotes / totalVotes;
-        float g = currentPostData.GreenVotes / totalVotes;
-        float b = currentPostData.BlueVotes / totalVotes;
-        
-        // 色を設定
-        fireworkColor = new Color(r, g, b);
-        
-        // パーティクルシステムに色を適用
-        if (explosionBurst != null)
-        {
-            var main = explosionBurst.main;
-            main.startColor = fireworkColor;
-        }
-        
-        if (launchTrail != null)
-        {
-            var main = launchTrail.main;
-            main.startColor = fireworkColor;
-        }
     }
     /// <summary>
     /// Managerが、この花火の投稿データを参照するために使う
@@ -240,4 +193,7 @@ public class FireworkController : MonoBehaviour
             explosionMain.startSpeed = largeSpeed;
         }
     }
+
 }
+
+

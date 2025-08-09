@@ -10,20 +10,18 @@ public class DataPostManager : MonoBehaviour
     // UnityエディタからInputFieldとButtonをここに設定します
     public TMP_InputField nameInputField;    // 名前入力用のInputField
     public TMP_InputField messageInputField; // 投稿内容入力用のInputField
-    public Button saveButton;                // 投稿内容保存用のButton
+    public Button saveButton;
 
-    private FirebaseFirestore db;// FirebaseFirestoreにアクセスするための変数
+    private FirebaseFirestore db;
 
     void Start()
     {
-        // Firebase Firestoreのインスタンスを初期化
+        // Firebase Firestoreのインスタンスを初期化（シンプルに）
         db = FirebaseFirestore.DefaultInstance;
         
-        // Firebaseを使うのに必要な環境（依存関係）が揃っているかを非同期でチェック
+        // Firebase依存性を確認して修正
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
             Firebase.DependencyStatus dependencyStatus = task.Result;
-
-            
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
                 // Firebaseが使用可能な場合
@@ -46,10 +44,8 @@ public class DataPostManager : MonoBehaviour
             }
         });
 
-        //ボタンを何度も重複して押したときに、同じ処理が何回も実行されるのを防ぐ
-        saveButton.onClick.RemoveAllListeners();
-
         // ボタンがクリックされたらSaveDataメソッドを呼び出すように設定
+        saveButton.onClick.RemoveAllListeners();
         saveButton.onClick.AddListener(() => SaveData());
     }
     
@@ -76,29 +72,17 @@ public class DataPostManager : MonoBehaviour
             return;
         }
 
-        // 現在時刻のTimestampを取得
-        Timestamp currentTime = Timestamp.GetCurrentTimestamp();
-        
-        // 1時間後のTimestampを計算
-        System.DateTime expireDateTime = currentTime.ToDateTime().AddHours(1);
-        Timestamp expireTime = Timestamp.FromDateTime(expireDateTime.ToUniversalTime());
-        
         // Firestoreに保存するデータを作成
         Dictionary<string, object> data = new Dictionary<string, object>
         {
             { "name", nameText },
             { "message", messageText },
-            { "timestamp", currentTime },
-            { "expireAt", expireTime }, // 1時間後の期限切れ時刻
-            { "likes", 0 }, // いいね数の初期値を0に設定
-            { "redVotes", 0 },   // 赤いいねの初期値
-            { "greenVotes", 0 }, // 緑いいねの初期値
-            { "blueVotes", 0 }   // 青いいねの初期値
+            { "timestamp", Timestamp.GetCurrentTimestamp() },
+            { "likes", 0 } // いいね数の初期値を0に設定
         };
 
         // "messages"というコレクションに新しいドキュメントを追加
         db.Collection("messages").AddAsync(data).ContinueWithOnMainThread(task => {
-            //保存が成功してたら入力欄をクリア
             if (task.IsCompleted && !task.IsFaulted)
             {
                 Debug.Log("データの保存に成功しました！");
