@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "id": "p1",
+      "owner": "Ryo",
+      "text": "初めての花火SNS投稿！",
+      "createdAtUnix": 1722840000,
+      "likes": 12
+    },
+    {
+      "id": "p2",
+      "owner": "Mika",
+      "text": "青い花火が綺麗だった～",
+      "createdAtUnix": 1722926400,
+      "likes": 7
+    },
+    {
+      "id": "p3",
+      "owner": "太郎",
+      "text": "海に行った！",
+      "createdAtUnix": 1722326400,
+    "likes": 10
+    }
+]
+}
