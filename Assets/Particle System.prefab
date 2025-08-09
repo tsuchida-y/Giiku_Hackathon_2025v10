@@ -613,7 +613,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.05
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1369,7 +1369,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.03459108, g: 0.95953655, b: 1, a: 1}
-        key1: {r: 0.03524119, g: 0.22824961, b: 1, a: 1}
+        key1: {r: 0.03524119, g: 0.22824961, b: 1, a: 0}
         key2: {r: 0.035294116, g: 0.16871518, b: 1, a: 0}
         key3: {r: 0.95692766, g: 0.035294116, b: 1, a: 0}
         key4: {r: 1, g: 1, b: 1, a: 0}
@@ -1377,15 +1377,15 @@ ParticleSystem:
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 4626
-        ctime1: 20239
+        ctime1: 15806
         ctime2: 27756
-        ctime3: 46260
-        ctime4: 65535
+        ctime3: 39707
+        ctime4: 48188
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
+        atime1: 50115
         atime2: 0
         atime3: 0
         atime4: 0
@@ -4923,12 +4923,15 @@ MonoBehaviour:
   smallHeight: 1
   smallSize: 0.5
   smallLifetimeMinutes: 0.5
-  mediumHeight: 5
+  mediumHeight: 7
   mediumSize: 1
   mediumLifetimeMinutes: 1
-  largeHeight: 10
+  largeHeight: 15
   largeSize: 2
   largeLifetimeMinutes: 10
+  smallSpeed: 2
+  mediumSpeed: 10
+  largeSpeed: 40
 --- !u!1 &7067796497328550387
 GameObject:
   m_ObjectHideFlags: 0

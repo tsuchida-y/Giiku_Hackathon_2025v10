@@ -23,6 +23,10 @@ public class FireworkController : MonoBehaviour
     public float largeSize = 10f;
     public float largeLifetimeMinutes = 180f; // 60分 + 追加120分
 
+    public float smallSpeed = 5f;//花火の球の半径
+    public float mediumSpeed = 10f;
+    public float largeSpeed = 15f;
+
     // 内部で使う変数
     private PostData currentPostData;
     private FestivalManager festivalManager;
@@ -114,12 +118,15 @@ public class FireworkController : MonoBehaviour
         if (tier == FireworkTier.Small) {
             launchMain.startSpeed = smallHeight;
             explosionMain.startSize = smallSize;
+            explosionMain.startSpeed = smallSpeed;
         } else if (tier == FireworkTier.Medium) {
             launchMain.startSpeed = mediumHeight;
             explosionMain.startSize = mediumSize;
+            explosionMain.startSpeed = mediumSpeed;
         } else if (tier == FireworkTier.Large) {
             launchMain.startSpeed = largeHeight;
             explosionMain.startSize = largeSize;
+            explosionMain.startSpeed = largeSpeed;
         }
     }
 
