@@ -76,13 +76,24 @@ public class DataPostManager : MonoBehaviour
             return;
         }
 
+        // 現在時刻のTimestampを取得
+        Timestamp currentTime = Timestamp.GetCurrentTimestamp();
+        
+        // 1時間後のTimestampを計算
+        System.DateTime expireDateTime = currentTime.ToDateTime().AddHours(1);
+        Timestamp expireTime = Timestamp.FromDateTime(expireDateTime.ToUniversalTime());
+        
         // Firestoreに保存するデータを作成
         Dictionary<string, object> data = new Dictionary<string, object>
         {
             { "name", nameText },
             { "message", messageText },
-            { "timestamp", Timestamp.GetCurrentTimestamp() },
-            { "likes", 0 } // いいね数の初期値を0に設定
+            { "timestamp", currentTime },
+            { "expireAt", expireTime }, // 1時間後の期限切れ時刻
+            { "likes", 0 }, // いいね数の初期値を0に設定
+            { "redVotes", 0 },   // 赤いいねの初期値
+            { "greenVotes", 0 }, // 緑いいねの初期値
+            { "blueVotes", 0 }   // 青いいねの初期値
         };
 
         // "messages"というコレクションに新しいドキュメントを追加

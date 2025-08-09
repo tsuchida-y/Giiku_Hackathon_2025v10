@@ -77,9 +77,9 @@ public class FestivalManager : MonoBehaviour
         
         try
         {
-            // postsコレクションからすべてのデータを取得
-            QuerySnapshot snapshot = await db.Collection("posts")
-                .OrderByDescending("createdAt")
+            // messagesコレクションからすべてのデータを取得
+            QuerySnapshot snapshot = await db.Collection("messages")
+                .OrderByDescending("timestamp")
                 .GetSnapshotAsync();
                 
             // 取得したデータを変換してキャッシュに保存
@@ -179,56 +179,6 @@ public class FestivalManager : MonoBehaviour
             OnNewPostReceived(shuffledPosts[i]);
         }
     }
-    
-    // ★★★ 3パターンのテスト用コード（自動生成機能があるので非アクティブ化） ★★★
-    /*
-    void Update()
-    {
-    // Press 'R' for a Red firework
-    if (Input.GetKeyDown(KeyCode.R))
-    {
-        PostData testPost = new PostData
-        {
-            PostID = "testPost_Red_" + Random.Range(0, 10000),
-            Timestamp = System.DateTime.UtcNow,
-            LikeCount = 10,
-            RedVotes = 10,
-            GreenVotes = 1,
-            BlueVotes = 1
-        };
-        OnNewPostReceived(testPost);
-    }
-
-    // Press 'G' for a Green firework
-    if (Input.GetKeyDown(KeyCode.G))
-    {
-        PostData testPost = new PostData
-        {
-            PostID = "testPost_Green_" + Random.Range(0, 10000),
-            Timestamp = System.DateTime.UtcNow,
-            LikeCount = 0,
-            RedVotes = 1,
-            GreenVotes = 10,
-            BlueVotes = 1
-        };
-        OnNewPostReceived(testPost);
-    }
-
-    if (Input.GetKeyDown(KeyCode.B))
-    {
-        PostData testPost = new PostData
-        {
-            PostID = "testPost_Blue_" + Random.Range(0, 10000),
-            Timestamp = System.DateTime.UtcNow,
-            LikeCount = 5,
-            RedVotes = 1,
-            GreenVotes = 1,
-            BlueVotes = 10
-        };
-        OnNewPostReceived(testPost);
-    }
-    }
-    */
     
     // デバッグ用の機能（Firestoreが設定されていない場合に使用）
     void Update()
