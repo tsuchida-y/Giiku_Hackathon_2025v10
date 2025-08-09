@@ -55,6 +55,7 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\chinatsu\Scripts\FireworkTrigger.cs" />
     <Compile Include="Assets\chinatsu\Scripts\PostData.cs" />
+    <Compile Include="Assets\chinatsu\Scripts\SelectedPost.cs" />
     <Compile Include="Assets\chinatsu\Scripts\TapManager.cs" />
     <Compile Include="Assets\FireworkController.cs" />
     <Compile Include="Assets\FireworkSpawner.cs" />

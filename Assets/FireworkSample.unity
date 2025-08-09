@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 69591096}
   - component: {fileID: 69591095}
   - component: {fileID: 69591098}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5254,6 +5254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585d9c2269021604f88b961d528d293f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireworkMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &355253019
 Transform:
   m_ObjectHideFlags: 0
@@ -5531,7 +5534,7 @@ GameObject:
   - component: {fileID: 1131470020}
   - component: {fileID: 1131470019}
   - component: {fileID: 1131470021}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5857,7 +5860,7 @@ GameObject:
   - component: {fileID: 1967736322}
   - component: {fileID: 1967736324}
   - component: {fileID: 1967736323}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

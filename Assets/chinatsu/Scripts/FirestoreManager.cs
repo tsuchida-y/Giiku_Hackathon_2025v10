@@ -1,3 +1,4 @@
+/*
 using Firebase.Firestore;
 using Firebase.Extensions;
 using System.Threading.Tasks;
@@ -72,3 +73,4 @@ public class FirestoreManager : MonoBehaviour
         }
     }
 }
+*/
