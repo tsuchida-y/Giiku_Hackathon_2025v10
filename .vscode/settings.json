@@ -60,15 +60,6 @@
         "*.asset": "yaml",
         "*.meta": "yaml",
         "*.prefab": "yaml",
-<<<<<<< HEAD
-        "*.unity": "yaml"
-    },
-    "explorer.fileNesting.enabled": true,
-    "explorer.fileNesting.patterns": {
-        "*.sln": "*.csproj"
-    },
-    "dotnet.defaultSolution": "Giiku_Hackathon_2025v10.sln"
-=======
         "*.unity": "yaml",
     },
     "explorer.fileNesting.enabled": true,
@@ -76,5 +67,4 @@
         "*.sln": "*.csproj",
     },
     "dotnet.defaultSolution": "Hackathonv10.sln"
->>>>>>> 2a07fb2 (Initial commit with Git LFS)
 }
