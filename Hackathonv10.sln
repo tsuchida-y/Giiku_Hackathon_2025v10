@@ -1,41 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-<<<<<<< HEAD
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{F1A3ABE5-B3E7-E95E-5AC3-B0F31ECD14B5}"
-EndProject
-=======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{F1A3ABE5-B3E7-E95E-5AC3-B0F31ECD14B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}"
 EndProject
->>>>>>> 2a07fb2 (Initial commit with Git LFS)
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-<<<<<<< HEAD
-		{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
->>>>>>> 2a07fb2 (Initial commit with Git LFS)
 		{F1A3ABE5-B3E7-E95E-5AC3-B0F31ECD14B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1A3ABE5-B3E7-E95E-5AC3-B0F31ECD14B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1A3ABE5-B3E7-E95E-5AC3-B0F31ECD14B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1A3ABE5-B3E7-E95E-5AC3-B0F31ECD14B5}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
-=======
 		{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B587F2CB-2CE6-4A77-E6CF-0B9C6FA979BD}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> 2a07fb2 (Initial commit with Git LFS)
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
