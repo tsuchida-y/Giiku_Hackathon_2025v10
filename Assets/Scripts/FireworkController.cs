@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class FireworkController : MonoBehaviour
 {
+    [Header("クリック判定用")]
+    [SerializeField] Transform hitTarget; // Inspector で HitTarget を割り当て
+    SphereCollider hitCol;
+
+
     // 花火の3段階の成長レベルを定義
     public enum FireworkTier { Small, Medium, Large }
 
@@ -30,23 +35,71 @@ public class FireworkController : MonoBehaviour
     // 内部で使う変数
     private PostData currentPostData;
     private FestivalManager festivalManager;
+    private float currentHeight; // ← いまの打上げ高さを保存
+    private Color fireworkColor;
+
 
     // Spawnerから呼び出される、一生の始まりの合図
     public void Initialize(PostData data, FestivalManager manager)
     {
         this.currentPostData = data;
         this.festivalManager = manager;
-        float totalVotes = data.RedVotes + data.GreenVotes + data.BlueVotes;
-        if (totalVotes == 0) { totalVotes = 1; }
-
-        float r = data.RedVotes / totalVotes;
-        float g = data.GreenVotes / totalVotes;
-        float b = data.BlueVotes / totalVotes;
-
-        Color fireworkColor = new Color(r, g, b);
-        var explosionMain = explosionBurst.main;
-        explosionMain.startColor = fireworkColor;
+        
+        // 色が設定されていない場合は、デフォルトで計算
+        if (fireworkColor == Color.clear)
+        {
+            CalculateFireworkColor();
+        }
+        
         StartCoroutine(LifecycleCoroutine());
+    }
+    
+    // 花火の色を外部から設定するためのメソッド
+    public void SetFireworkColor(Color color)
+    {
+        this.fireworkColor = color;
+        
+        // パーティクルシステムの色を更新
+        if (explosionBurst != null)
+        {
+            var main = explosionBurst.main;
+            main.startColor = fireworkColor;
+        }
+        
+        if (launchTrail != null)
+        {
+            var main = launchTrail.main;
+            main.startColor = fireworkColor;
+        }
+    }
+    
+    // 投稿データのRGB値から花火の色を計算
+    private void CalculateFireworkColor()
+    {
+        if (currentPostData == null) return;
+        
+        float totalVotes = currentPostData.RedVotes + currentPostData.GreenVotes + currentPostData.BlueVotes;
+        if (totalVotes <= 0) totalVotes = 3; // デフォルト値として3を使用（各色1ずつ）
+        
+        float r = currentPostData.RedVotes / totalVotes;
+        float g = currentPostData.GreenVotes / totalVotes;
+        float b = currentPostData.BlueVotes / totalVotes;
+        
+        // 色を設定
+        fireworkColor = new Color(r, g, b);
+        
+        // パーティクルシステムに色を適用
+        if (explosionBurst != null)
+        {
+            var main = explosionBurst.main;
+            main.startColor = fireworkColor;
+        }
+        
+        if (launchTrail != null)
+        {
+            var main = launchTrail.main;
+            main.startColor = fireworkColor;
+        }
     }
     /// <summary>
     /// Managerが、この花火の投稿データを参照するために使う
@@ -82,11 +135,16 @@ public class FireworkController : MonoBehaviour
 
         // ---4: 運命の分岐
         FireworkTier nextTier;
-        if (latestLikeCount >= 10) {
+        if (latestLikeCount >= 10)
+        {
             nextTier = FireworkTier.Large;
-        } else if (latestLikeCount >= 5) {
+        }
+        else if (latestLikeCount >= 5)
+        {
             nextTier = FireworkTier.Medium;
-        } else {
+        }
+        else
+        {
             // 【消滅ルート】
             Destroy(gameObject, 10f); // 10秒かけて消える
             yield break; // コルーチンを終了
@@ -97,47 +155,90 @@ public class FireworkController : MonoBehaviour
         yield return StartCoroutine(LaunchAndBloom()); // 新しい見た目で再打ち上げ＆開花
 
         float newLifetime = 0;
-        if(nextTier == FireworkTier.Medium) {
+        if (nextTier == FireworkTier.Medium)
+        {
             newLifetime = mediumLifetimeMinutes - smallLifetimeMinutes;
-        } else if (nextTier == FireworkTier.Large) {
+        }
+        else if (nextTier == FireworkTier.Large)
+        {
             newLifetime = largeLifetimeMinutes - smallLifetimeMinutes;
         }
 
-        if (newLifetime > 0) {
+        if (newLifetime > 0)
+        {
             // (ここに追加の寿命と減衰の処理を記述)
             yield return new WaitForSeconds(newLifetime * 60f);
         }
 
         Destroy(gameObject, 10f);
     }
-    
-    // 打ち上げと開花の一連の流れ
-    private IEnumerator LaunchAndBloom()
+
+
+    void Awake()
     {
-        launchTrail.Play();
-        yield return new WaitForSeconds(launchTrail.main.duration);
-        explosionBurst.Play();
+        if (hitTarget) hitCol = hitTarget.GetComponent<SphereCollider>();
+        if (hitCol) hitCol.enabled = false; // 初期は無効
     }
 
-    // 見た目を更新する
+    // 打ち上げと開花の一連の流れ + 当たり判定
+    private IEnumerator LaunchAndBloom()
+    {
+        // 上昇演出
+        launchTrail.Play();
+        yield return new WaitForSeconds(launchTrail.main.duration);
+
+        // 頂点（現在の高さ）に移動して判定ON
+        Vector3 apexPos = transform.position + Vector3.up * currentHeight;
+
+        if (explosionBurst) explosionBurst.transform.position = apexPos;
+        if (hitCol)
+        {
+            hitTarget.position = apexPos;
+            // ティアに合わせて半径調整してもOK（例：サイズに比例）
+            // hitCol.radius = Mathf.Max(1.5f, currentHeight * 0.12f);
+            hitCol.enabled = true;
+        }
+
+        // 爆発演出
+        explosionBurst.Play();
+
+        yield return new WaitWhile(() => explosionBurst.IsAlive(true));
+
+        // 余韻で 0.2〜0.5秒だけ猶予（端末差の吸収）
+        yield return new WaitForSeconds(0.3f);
+        
+        // 爆発終了+少しだけ余韻
+        // yield return new WaitForSeconds(explosionBurst.main.duration + 0.5f);
+
+        if (hitCol) hitCol.enabled = false;
+    }
+
+    // 見た目更新＋高さ記録
     private void UpdateAppearance(FireworkTier tier)
     {
         var launchMain = launchTrail.main;
         var explosionMain = explosionBurst.main;
 
-        if (tier == FireworkTier.Small) {
+        if (tier == FireworkTier.Small)
+        {
+            currentHeight = smallHeight;
             launchMain.startSpeed = smallHeight;
             explosionMain.startSize = smallSize;
             explosionMain.startSpeed = smallSpeed;
-        } else if (tier == FireworkTier.Medium) {
+        }
+        else if (tier == FireworkTier.Medium)
+        {
+            currentHeight = mediumHeight;
             launchMain.startSpeed = mediumHeight;
             explosionMain.startSize = mediumSize;
             explosionMain.startSpeed = mediumSpeed;
-        } else if (tier == FireworkTier.Large) {
+        }
+        else // Large
+        {
+            currentHeight = largeHeight;
             launchMain.startSpeed = largeHeight;
             explosionMain.startSize = largeSize;
             explosionMain.startSpeed = largeSpeed;
         }
     }
-
 }

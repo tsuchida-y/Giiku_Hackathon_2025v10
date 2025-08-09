@@ -14,5 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/postlistScene.unity
     guid: 26c85b6e597143840a7a33213e2d76c2
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/FireSpwer.unity
+    guid: fb0ea81e08567d843b9c39c951733cf4
+  m_configObjects:
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: d09529ef618564c0a9bd973ce26d1701, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 25165cc6c0a60784e903ae83c96a815e, type: 2}
   m_UseUCBPForAssetBundles: 0
