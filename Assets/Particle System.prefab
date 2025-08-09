@@ -171,7 +171,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4921,14 +4921,14 @@ MonoBehaviour:
   launchTrail: {fileID: 3473778167480316426}
   explosionBurst: {fileID: 8737836752450661875}
   smallHeight: 1
-  smallSize: 1
-  smallLifetimeMinutes: 1
-  mediumHeight: 10
-  mediumSize: 10
+  smallSize: 0.5
+  smallLifetimeMinutes: 0.5
+  mediumHeight: 5
+  mediumSize: 1
   mediumLifetimeMinutes: 1
-  largeHeight: 20
-  largeSize: 50
-  largeLifetimeMinutes: 180
+  largeHeight: 10
+  largeSize: 2
+  largeLifetimeMinutes: 10
 --- !u!1 &7067796497328550387
 GameObject:
   m_ObjectHideFlags: 0
