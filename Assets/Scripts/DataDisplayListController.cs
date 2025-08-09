@@ -237,80 +237,6 @@ public class DataDisplayListController : MonoBehaviour
     }
 
 
-    // void Bind(GameObject go, Post p)
-    // {
-    //     // プレハブ内の子オブジェクト名をすべて出力（階層も含めて）
-    //     Debug.Log("プレハブ内の子オブジェクト:");
-    //     foreach (Transform child in go.transform)
-    //     {
-    //         Debug.Log($"- {child.name}");
-
-    //         // さらに子オブジェクトがあれば表示
-    //         foreach (Transform grandchild in child.transform)
-    //         {
-    //             Debug.Log($"  └── {grandchild.name}");
-
-    //             // さらに子オブジェクトがあれば表示
-    //             foreach (Transform greatGrandchild in grandchild.transform)
-    //             {
-    //                 Debug.Log($"      └── {greatGrandchild.name}");
-    //             }
-    //         }
-    //     }
-
-    //     var ownerText = go.transform.Find("OwnerText")?.GetComponent<TMP_Text>();
-    //     var bodyText = go.transform.Find("BodyText")?.GetComponent<TMP_Text>();
-    //     var timeText = go.transform.Find("TimeText")?.GetComponent<TMP_Text>();
-    //     var button = go.GetComponentInChildren<Button>(true);
-
-    //     // UIコンポーネントが見つからない場合のデバッグログ
-    //     if (ownerText == null) Debug.LogError("OwnerTextが見つかりません");
-    //     if (bodyText == null) Debug.LogError("BodyTextが見つかりません");
-    //     if (timeText == null) Debug.LogError("TimeTextが見つかりません");
-    //     if (button == null) Debug.LogError("Buttonが見つかりません");
-
-    //     if (ownerText) ownerText.text = p.owner;
-    //     if (bodyText)
-    //     {
-    //         int limit = 70; // 最大文字数（全角・半角問わず）
-    //         if (p.text.Length > limit)
-    //             bodyText.text = p.text.Substring(0, limit) + "…";
-    //         else
-    //             bodyText.text = p.text;
-    //     }
-    //     if (timeText) timeText.text = UnixToJstString(p.createdAtUnix);
-
-    //     if (button)
-    //     {
-    //         button.onClick.RemoveAllListeners();
-    //         button.onClick.AddListener(() =>
-    //         {
-    //             PostRoute.SelectedPostId = p.id;
-    //             UnityEngine.SceneManagement.SceneManager.LoadScene("PostDetailScene");
-    //         });
-    //     }
-
-    //     // いいねボタンの設定（ReactionPanelの子オブジェクト）
-    //     var likeButton = go.transform.Find("ReactionPanel/LikeButton")?.GetComponent<Button>();
-    //     // LikeTextはPostItemの直接の子オブジェクト
-    //     var likeText = go.transform.Find("ReactionPanel/LikeText")?.GetComponent<TMP_Text>();
-
-    //     // UIコンポーネントが見つからない場合のデバッグログ
-    //     if (likeButton == null) Debug.LogError("ReactionPanel/LikeButtonが見つかりません");
-    //     if (likeText == null) Debug.LogError("LikeTextが見つかりません");
-
-    //     if (likeButton && likeText)
-    //     {
-    //         Debug.Log($"いいね数を設定します: {p.likes} いいね");
-    //         likeText.text = p.likes.ToString() + " いいね";
-
-    //         likeButton.onClick.RemoveAllListeners();
-    //         likeButton.onClick.AddListener(() =>
-    //         {
-    //             LikePost(p.id);
-    //         });
-    //     }
-    // }
 
     // いいね機能の実装
     void LikePost(string postId)
@@ -389,6 +315,7 @@ public class DataDisplayListController : MonoBehaviour
     public void OnHomeButtonClick()
     {
         Debug.Log("Home");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("FireSpwer");
     }
 
     public void OnPostListButtonClick()
