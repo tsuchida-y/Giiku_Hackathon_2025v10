@@ -98,6 +98,26 @@ public class FestivalManager : MonoBehaviour
                     Timestamp = System.DateTime.UtcNow // 適切な変換が必要
                 };
                 
+                // ユーザー名を取得
+                if (postData.TryGetValue("name", out object nameObj))
+                {
+                    post.UserName = nameObj?.ToString() ?? "匿名";
+                }
+                else
+                {
+                    post.UserName = "匿名";
+                }
+                
+                // 投稿内容を取得
+                if (postData.TryGetValue("message", out object messageObj))
+                {
+                    post.Message = messageObj?.ToString() ?? "";
+                }
+                else
+                {
+                    post.Message = "";
+                }
+                
                 // いいね数を取得
                 if (postData.TryGetValue("likes", out object likesObj))
                 {
@@ -117,6 +137,9 @@ public class FestivalManager : MonoBehaviour
                 {
                     post.BlueVotes = System.Convert.ToInt32(blueObj);
                 }
+                
+                // デバッグ用に投稿内容を表示
+                Debug.Log($"投稿データ取得: ID={post.PostID}, Name={post.UserName}, Message={post.Message?.Substring(0, Mathf.Min(20, post.Message?.Length ?? 0))}..., Likes={post.LikeCount}");
                 
                 // その他の必要なデータがあれば取得
                 
