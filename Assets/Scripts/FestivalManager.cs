@@ -28,7 +28,6 @@ public class FestivalManager : MonoBehaviour
         {
             PostID = "testPost_Red_" + Random.Range(0, 10000),
             Timestamp = System.DateTime.UtcNow,
-            LikeCount = 10,
             RedVotes = 10,
             GreenVotes = 1,
             BlueVotes = 1
@@ -43,7 +42,6 @@ public class FestivalManager : MonoBehaviour
         {
             PostID = "testPost_Green_" + Random.Range(0, 10000),
             Timestamp = System.DateTime.UtcNow,
-            LikeCount = 0,
             RedVotes = 1,
             GreenVotes = 10,
             BlueVotes = 1
@@ -57,7 +55,6 @@ public class FestivalManager : MonoBehaviour
         {
             PostID = "testPost_Blue_" + Random.Range(0, 10000),
             Timestamp = System.DateTime.UtcNow,
-            LikeCount = 5,
             RedVotes = 1,
             GreenVotes = 1,
             BlueVotes = 10
@@ -81,16 +78,23 @@ public class FestivalManager : MonoBehaviour
     }
 
     // 最新のいいね数を返す
-    public int GetLikesForPost(string postID)
+    // 修正後のコード
+public int GetLikesForPost(string postID)
+{
+    PostData post = allPosts.Find(p => p.PostID == postID);
+    if (post != null)
     {
-        PostData post = allPosts.Find(p => p.PostID == postID);
-        if (post != null)
-        {
-            post.LikeCount += Random.Range(0, 5);
-            return post.LikeCount;
-        }
-        return 0;
+        // ランダムにいずれかの投票を増やす
+        int randomVotes = Random.Range(0, 5);
+        int voteType = Random.Range(0, 3);
+        if (voteType == 0) { post.RedVotes += randomVotes; }
+        else if (voteType == 1) { post.GreenVotes += randomVotes; }
+        else { post.BlueVotes += randomVotes; }
+
+        return post.LikeCount; // LikeCountは自動的に更新される
     }
+    return 0;
+}
 
     // 定期的に古い投稿（花火）を削除するためのコルーチン
     private IEnumerator CleanupCoroutine()

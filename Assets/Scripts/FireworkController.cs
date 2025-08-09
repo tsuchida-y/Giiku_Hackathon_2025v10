@@ -78,7 +78,6 @@ public class FireworkController : MonoBehaviour
 
         // --- 3: 60分後のいいね数チェック
         int latestLikeCount = festivalManager.GetLikesForPost(currentPostData.PostID);
-        currentPostData.LikeCount = latestLikeCount;
 
         // ---4: 運命の分岐
         FireworkTier nextTier;

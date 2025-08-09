@@ -223,19 +223,18 @@ public class DataDisplayListController : MonoBehaviour
         }
     }
 
-    private PostData ToPostData(Post p)
+private PostData ToPostData(Post p)
+{
+    return new PostData
     {
-        return new PostData
-        {
-            PostID = p.id,
-            UserName = p.owner ?? "匿名",
-            Message = p.text ?? "",
-            LikeCount = p.likes,
-            // Unix秒 → UTCのDateTime
-            Timestamp = DateTimeOffset.FromUnixTimeSeconds(p.createdAtUnix).UtcDateTime
-        };
-    }
-
+        PostID = p.id,
+        UserName = p.owner ?? "匿名",
+        Message = p.text ?? "",
+        // この行がエラーの原因なので削除します
+        // LikeCount = p.likes, 
+        Timestamp = DateTimeOffset.FromUnixTimeSeconds(p.createdAtUnix).UtcDateTime
+    };
+}
 
     // void Bind(GameObject go, Post p)
     // {
