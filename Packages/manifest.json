@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "com.google.external-dependency-manager": "file:../GooglePackages/com.google.external-dependency-manager-1.2.186.tgz",
+    "com.google.firebase.app": "file:../GooglePackages/com.google.firebase.app-12.10.1.tgz",
+    "com.google.firebase.firestore": "file:../GooglePackages/com.google.firebase.firestore-12.10.1.tgz",
     "com.unity.ai.navigation": "2.0.8",
     "com.unity.collab-proxy": "2.8.2",
     "com.unity.ide.rider": "3.0.36",
@@ -11,6 +14,7 @@
     "com.unity.timeline": "1.8.7",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.7",
+    "com.unity.xr.arfoundation": "6.0.6",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
