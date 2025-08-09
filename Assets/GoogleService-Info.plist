@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCoe7OaYoJvLCRLbeHK5hYYossoYKkycuM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>191957506136</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hackathon.v10</string>
+	<key>PROJECT_ID</key>
+	<string>giiku-hackathon-2025v10</string>
+	<key>STORAGE_BUCKET</key>
+	<string>giiku-hackathon-2025v10.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:191957506136:ios:1ecb6db50f4dca95bc522d</string>
+</dict>
+</plist>
