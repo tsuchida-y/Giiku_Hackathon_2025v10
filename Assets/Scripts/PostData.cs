@@ -6,4 +6,8 @@ public class PostData
     public string UserName;
     public int LikeCount;
     public System.DateTime Timestamp;
+    
+    public int RedVotes;
+    public int GreenVotes;
+    public int BlueVotes;
 }
