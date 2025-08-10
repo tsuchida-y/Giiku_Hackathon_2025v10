@@ -273,8 +273,10 @@ public class DataDisplayListController : MonoBehaviour
             UserName = p.owner ?? "匿名",
             Message = p.text ?? "",
             LikeCount = p.likes,
-            // Unix秒 → UTCのDateTime
-            Timestamp = DateTimeOffset.FromUnixTimeSeconds(p.createdAtUnix).UtcDateTime
+            Timestamp = DateTimeOffset.FromUnixTimeSeconds(p.createdAtUnix).UtcDateTime,
+            RedVotes = p.redVotes,
+            GreenVotes = p.greenVotes,
+            BlueVotes = p.blueVotes,
         };
     }
 
