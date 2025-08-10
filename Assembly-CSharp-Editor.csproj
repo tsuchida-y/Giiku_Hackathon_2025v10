@@ -45,6 +45,9 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.0.54f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll" />
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.0.54f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.0.54f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
+    <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.54f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
+    <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.54f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
+    <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.54f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs" />
@@ -623,7 +626,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Firebase.Editor">
-      <HintPath>Library/PackageCache/com.google.firebase.app@0446765082a5/Firebase/Editor/Firebase.Editor.dll</HintPath>
+      <HintPath>Library\PackageCache\com.google.firebase.app@0446765082a5\Firebase\Editor\Firebase.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
