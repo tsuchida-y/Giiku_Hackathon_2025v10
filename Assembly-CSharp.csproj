@@ -99,6 +99,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
+    <Compile Include="Assets/Scripts/FireworkAudioLooperGapless.cs" />
     <Compile Include="Assets/Scripts/FestivalManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +123,7 @@
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
+    <None Include="Assets/StylizedGrass/READMEdoc.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />
@@ -724,7 +726,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Google.MiniJson">
-      <HintPath>Library\PackageCache\com.google.firebase.app@0446765082a5\Firebase\Plugins\Google.MiniJson.dll</HintPath>
+      <HintPath>Library/PackageCache/com.google.firebase.app@0446765082a5/Firebase/Plugins/Google.MiniJson.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">

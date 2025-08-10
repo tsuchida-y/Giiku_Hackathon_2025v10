@@ -626,7 +626,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Firebase.Editor">
-      <HintPath>Library\PackageCache\com.google.firebase.app@0446765082a5\Firebase\Editor\Firebase.Editor.dll</HintPath>
+      <HintPath>Library/PackageCache/com.google.firebase.app@0446765082a5/Firebase/Editor/Firebase.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
