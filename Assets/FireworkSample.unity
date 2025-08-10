@@ -5596,11 +5596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ba3df2d719bb5498f1368a80953c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallClip: {fileID: 8300000, guid: 61cc7e4d2c7ce7540ab703dc3de9c916, type: 3}
-  mediumClip: {fileID: 8300000, guid: 14fcf0b43fd0ca845995660a847e1e16, type: 3}
-  largeClip: {fileID: 8300000, guid: d9353c918ddde7748ba8127bc63ce2a5, type: 3}
-  spatialBlend: 0
-  maxDistance: 500
 --- !u!82 &1131470023
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5710,12 +5705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6c2fefbd152f9469355b9c0ac2d0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchTrail: {fileID: 8737836752450661875, guid: e4213e74739c5cf4eb85aac0a900c3e7, type: 3}
-  explosionBurst: {fileID: 8737836752450661875, guid: e4213e74739c5cf4eb85aac0a900c3e7, type: 3}
-  audioPlayer: {fileID: 0}
-  tier: 0
-  playOnSpawn: 1
-  verboseLog: 1
 --- !u!1 &1412121023
 GameObject:
   m_ObjectHideFlags: 0
