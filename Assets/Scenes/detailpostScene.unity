@@ -1103,9 +1103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PostText: {fileID: 1685368235}
   PostOwner: {fileID: 2005760883}
-  RedVotesText: {fileID: 0}
-  GreenVotesText: {fileID: 0}
-  BlueVotesText: {fileID: 0}
+  RedVotesText: {fileID: 1057934062}
+  GreenVotesText: {fileID: 240948698}
+  BlueVotesText: {fileID: 2001038655}
   ColorPreview: {fileID: 0}
 --- !u!1 &690160496
 GameObject:

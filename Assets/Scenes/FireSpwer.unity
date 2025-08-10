@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9af23ba5fa5364ff598888460e0e2759, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -287,6 +287,7 @@ MonoBehaviour:
   fireworkMask:
     serializedVersion: 2
     m_Bits: 64
+  debugLogs: 1
 --- !u!1 &669535279
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +470,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 2124369316}
+  enableAutoFireworks: 1
+  fireworkInterval: 5
+  numberOfFireworksPerInterval: 2
+  minFireworkDistance: 10
 --- !u!1 &1746719310
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +506,7 @@ MonoBehaviour:
   fireworkMask:
     serializedVersion: 2
     m_Bits: 64
+  debugLogs: 1
 --- !u!4 &1746719312
 Transform:
   m_ObjectHideFlags: 0
